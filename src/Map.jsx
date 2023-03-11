@@ -26,13 +26,14 @@ export default function Map({
   const center = COODINATES.center;
 
   const buildComponent = (data) => {
-    let propObj = data;
-    const coodinate = COODINATES[propObj.city];
-    propObj = { ...propObj, ...coodinate}
+    const { city } = data;
+    const { lat, lng } = COODINATES[city];
     return (
       <Component
-        key={propObj.city}
-        propObj={ propObj }
+        key={ city }
+        lat={ lat }
+        lng={ lng }
+        data={ data }
       />
     );
   }
