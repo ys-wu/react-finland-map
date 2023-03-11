@@ -5,22 +5,18 @@ const apiKey = process.env.REACT_APP_GOOGLE_API_KEY;
 
 const zoom = 11;
 
-const componentFactory = (city, lat, lng, text) => {
-  const Component = ({ text }) => {
-    return <div>{text}</div>
+const Component = ({ city, val }) => {
+    return <div key={ city }>{ val }</div>
   }
-
-  return <Component  key={ city } lat={ lat } lng= { lng } text = { text } /> 
-};
 
 const data = [
   {
     city: "city1",
-    text: "My Marker",
+    val: 1,
   },
   {
     city: "city2",
-    text: "My Marker 2",
+    val: 2,
   },
 ];
 
@@ -30,7 +26,7 @@ function App() {
       <Map
         apiKey={ apiKey }
         zoom={ zoom }
-        componentFactory={ componentFactory }
+        Component={ Component }
         data={ data }
       />
     </div>

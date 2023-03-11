@@ -4,13 +4,14 @@ import GoogleMapReact from 'google-map-react';
 export default function Map({
   apiKey,
   zoom,
-  componentFactory,
+  // componentFactory,
+  Component,
   data,
 }){
   const COODINATES = {
     center: {
       lat: 10.99835602,
-      lng: 77.01502627
+      lng: 77.01502627,
     },
     city1: {
       lat: 10.99835602,
@@ -25,9 +26,16 @@ export default function Map({
   const center = COODINATES.center;
 
   const buildComponent = (data) => {
-    const { city, text } = data
+    const { city, val } = data
     const { lat, lng } = COODINATES[city];
-    return componentFactory(city, lat, lng, text);
+    return (
+      <Component
+        key={ city }
+        lat={ lat }
+        lng={ lng }
+        val={ val }
+      />
+    );
   }
 
   return (
