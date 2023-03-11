@@ -1,33 +1,18 @@
 import React from 'react';
 import GoogleMapReact from 'google-map-react';
+import { COORDINATES } from './coordinates';
 
 export default function Map({
   apiKey,
-  zoom,
+  initStatus,
   Component,
   data,
 }){
-  const COODINATES = {
-    city1: {
-      lat: 10.99835602,
-      lng: 77.01502627,
-    },
-    city2: {
-      lat: 10.89835602,
-      lng: 77.01502627,
-    },
-  };
-
-  // const center = COODINATES.center;
-
-  const center = {
-    lat: 10.99835602,
-    lng: 77.01502627,
-  };
+  const { center, zoom } = initStatus;
 
   const buildComponent = (data) => {
     const { city } = data;
-    const { lat, lng } = COODINATES[city];
+    const { lat, lng } = COORDINATES[city];
     return (
       <Component
         key={ city }
