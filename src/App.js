@@ -5,9 +5,11 @@ const apiKey = process.env.REACT_APP_GOOGLE_API_KEY;
 
 const zoom = 11;
 
-const Component = ({ city, val }) => {
-    return <div key={ city }>{ val }</div>
-  }
+const Component = (props) => {
+  const { val } = props.propObj;
+
+  return <div>{ val }</div>
+}
 
 const data = [
   {
