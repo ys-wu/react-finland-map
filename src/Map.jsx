@@ -16,11 +16,19 @@ export default function Map({
       lat: 10.99835602,
       lng: 77.01502627,
     },
+    city2: {
+      lat: 10.89835602,
+      lng: 77.01502627,
+    },
   };
 
   const center = COODINATES.center;
-  const { city, text } = data[0]
-  const { lat, lng } = COODINATES[city];
+
+  const buildComponent = (data) => {
+    const { city, text } = data
+    const { lat, lng } = COODINATES[city];
+    return componentFactory(city, lat, lng, text);
+  }
 
   return (
     // Important! Always set the container height explicitly
@@ -30,7 +38,7 @@ export default function Map({
         defaultCenter={center}
         defaultZoom={zoom}
       >
-        { componentFactory(lat, lng, text)}
+        { data.map((x) => buildComponent(x)) }
       </GoogleMapReact>
     </div>
   );
