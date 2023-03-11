@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import GoogleMapReact from 'google-map-react';
 import { COORDINATES } from './coordinates';
 
@@ -8,17 +8,24 @@ export default function Map({
   Component,
   data,
 }){
-  const { center, zoom } = initStatus;
+  const [zoom, setZoom] = useState(initStatus.zoom);
+
+  const { center } = initStatus;
+
+  const handleZoomChange = ({ zoom }) => {
+    setZoom(zoom);
+  };
 
   const buildComponent = (data) => {
     const { city } = data;
     const { lat, lng } = COORDINATES[city];
+    const newData = { ...data, zoom: zoom }
     return (
       <Component
         key={ city }
         lat={ lat }
         lng={ lng }
-        data={ data }
+        data={ newData }
       />
     );
   }
@@ -28,8 +35,9 @@ export default function Map({
     <div style={{ height: '100vh', width: '100%' }}>
       <GoogleMapReact
         bootstrapURLKeys={{ key: apiKey }}
-        defaultCenter={center}
-        defaultZoom={zoom}
+        defaultCenter={ center }
+        zoom={ zoom }
+        onChange={ handleZoomChange }
       >
         { data.map((x) => buildComponent(x)) }
       </GoogleMapReact>

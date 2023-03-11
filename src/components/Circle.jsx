@@ -1,6 +1,6 @@
 export default function Circle (props) {
-  const { val } = props.data;
-  const diameter = `${ 100 * val }px`
+  const { val, zoom } = props.data;
+  const diameter = `${ 20 * val * Math.log(zoom) }px`
 
   const circleStyle ={
     width: diameter,
@@ -13,4 +13,4 @@ export default function Circle (props) {
   return (
     <div style={circleStyle}></div>
   );
-};
+}

@@ -8,7 +8,7 @@ const apiKey = process.env.REACT_APP_GOOGLE_API_KEY;
 const initStatus = {
   zoom: 6,
   center: {
-    lat: 65.50,
+    lat: 65.25,
     lng: 24.75,
   },
 }
